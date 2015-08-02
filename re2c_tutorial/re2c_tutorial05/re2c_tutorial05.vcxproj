@@ -11,8 +11,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{7CF1F660-9913-46A8-BA37-FB07BFB6EB8E}</ProjectGuid>
-    <RootNamespace>re2c_tutorial01</RootNamespace>
+    <ProjectGuid>{732F100B-E2CA-46E8-BB2A-EE16A3FAF9B0}</ProjectGuid>
+    <RootNamespace>re2c_tutorial</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -66,9 +66,12 @@
   <ItemGroup>
     <CustomBuild Include="main.re">
       <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)tool\re2c -o %(Filename).c %(Identity)</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(Filename).c;%(Outputs)</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)tool\re2c -o %(Filename).c %(Identity)</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(Filename).c;%(Outputs)</Outputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Generating lexers using re2c</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Generating lexers using re2c</Message>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
